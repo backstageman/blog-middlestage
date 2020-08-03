@@ -45,15 +45,15 @@ app.use((req, res, next) => {
   自定义异常处理中间件
 */
 app.use((err, req, res, next) => {
-  // console.log(err)
   // 没有验证token的情况
   if (err.name && err.name === 'UnauthorizedError') {
     const { status = 401, message } = err
     new Result(null, 'Token验证失败', {
       error: status,
-      errorMsg: message
+      errMsg: message
     }).jwtError(res.status(status))
   } else {
+    console.log('err',err)
     const msg = (err && err.message) || '服务端出错'
     const statusCode = (err.output && err.output.statusCode) || 500;
     const errorMsg = (err.output && err.output.payload && err.output.payload.error) || err.message
