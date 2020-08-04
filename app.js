@@ -1,9 +1,8 @@
-var express = require('express');
+const express = require('express');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const logger = require('morgan');
 const boom = require('@hapi/boom')
-var cors = require('cors')
-const { ERROR_CODE } = require('./utils/constant.js')
+const cors = require('cors')
 const jwtAuth = require('./utils/jwt')
 const Result = require('./model/Result')
 
@@ -12,7 +11,7 @@ const usersRouter = require('./routes/user');
 const articleRouter = require('./routes/article');
 const articleTypeRouter = require('./routes/articleType')
 
-var app = express();
+const app = express();
 app.use(cors())
 
 // view engine setup

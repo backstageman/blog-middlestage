@@ -1,5 +1,7 @@
+// 上传路径
 const UPLOAD_PATH = process.env.NODE_ENV === 'dev' ? 'D:/upload/img' : '/root/nginx/upload/img'
-const UPLOAD_URL = process.env.NODE_ENV === 'dev' ? 'http://localhost:8089/img' : 'http://masksuperman.top/img'
+// 上传之后的资源地址(可以通过这个地址访问到资源)
+const UPLOAD_URL = process.env.NODE_ENV === 'dev' ? 'http://localhost:8089/img' : 'http://www.masksuperman.top/img'
 // 线上环境待定
 let dbConfig = {}
 if (process.env.NODE_ENV === 'dev') {
