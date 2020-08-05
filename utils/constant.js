@@ -5,15 +5,15 @@ const UPLOAD_URL = process.env.NODE_ENV === 'dev' ? 'http://localhost:8089/img' 
 // 线上环境待定
 let dbConfig = {}
 if (process.env.NODE_ENV === 'dev') {
-  dbConfig.host = 'localhost'
-  dbConfig.user = 'root'
-  dbConfig.password = 'root'
-  dbConfig.database = 'blog_react'
+  dbConfig.host = '你猜啊'
+  dbConfig.user = '你猜啊'
+  dbConfig.password = '你猜啊'
+  dbConfig.database = '你猜啊'
 } else if (process.env.NODE_ENV === 'production') {
-  dbConfig.host = '35.241.80.249'
-  dbConfig.user = 'root'
-  dbConfig.password = 'HZm9HQqQ%Wz3BJCe'
-  dbConfig.database = 'blog_react'
+  dbConfig.host = '你猜啊'
+  dbConfig.user = '你猜啊'
+  dbConfig.password = '你猜啊'
+  dbConfig.database = '你猜啊'
 }
 
 module.exports = {
