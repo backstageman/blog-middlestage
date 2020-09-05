@@ -43,21 +43,22 @@ function insertArticle(article) {
 
 async function getArticleList(query) {
     // debug && console.log(query);
-    const {
+    let {
         title,
         introduction,
         content,
-        articleType,
+        articleTypeid,
         createTimeStart,
         createTimeEnd,
         updateTimeStart,
         updateTimeEnd,
-        page = 1,
+        current = 1,
         pageSize = 10
     } = query
-    const offset = (page - 1) * pageSize
-    let queryListSql = `
-                SELECT 
+    current = Number.parseInt(current)
+    pageSize = Number.parseInt(pageSize)
+    const offset = (current- 1) * pageSize
+    let queryListSql = `SELECT 
                     art.id,
                     title,
                     introduction,
@@ -81,7 +82,7 @@ async function getArticleList(query) {
     title && (whereCondition = db.andLike(whereCondition, 'title', title))
     introduction && (whereCondition = db.andLike(whereCondition, 'introduction', introduction))
     content && (whereCondition = db.andLike(whereCondition, 'content', content))
-    articleType && (whereCondition = db.and(whereCondition, 'articleType', articleType))
+    articleTypeid && (whereCondition = db.and(whereCondition, 'articleTypeid', articleTypeid))
     if (createTimeStart && createTimeEnd) {
         whereCondition = db.betweenAnd(whereCondition, 'createTime', createTimeStart, createTimeEnd,)
     }
@@ -95,12 +96,12 @@ async function getArticleList(query) {
     if (whereCondition !== '') {
         countSql = `${countSql} ${whereCondition}`
     }
-    debug && console.log(countSql);
+    // debug && console.log(countSql);
     const countResult = await db.querySql(countSql)
     queryListSql = `${queryListSql} limit ${pageSize} offset ${offset}`
-    debug && console.log(queryListSql);
+    // debug && console.log(queryListSql);
     const list = await db.querySql(queryListSql)
-    return { list, total: countResult[0].count, page, pageSize }
+    return { list, total: countResult[0].count, current, pageSize }
 }
 
 function deleteArticle(id, userObj) {

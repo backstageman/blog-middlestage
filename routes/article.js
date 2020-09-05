@@ -71,8 +71,8 @@ router.get('/article', (req, res, next) => {
   // console.log('query', req.query);
   if (!req.query.id) {
     // 获取文章列表
-    articleService.getArticleList(req.query).then(({ list, total, page, pageSize }) => {
-      new Result({ list, total, page, pageSize }, '获取文章数据成功').success(res)
+    articleService.getArticleList(req.query).then(({ list, total, current, pageSize }) => {
+      new Result({ list, total, current, pageSize }, '获取文章数据成功').success(res)
     }).catch(err => {
       next(boom.badImplementation(err))
     })
@@ -126,13 +126,13 @@ router.delete('/article/:id', async (req, res, next) => {
 router.put('/article', async (req, res, next) => {
   // 获取用户信息
   const decode = decoded(req)
-  // console.log('req', req.body);
-  if (!req.body.id) {
+  // console.log('req', req.query);
+  if (!req.query.id) {
     next(boom.badRequest(new Error('参数错误！')))
     // new Result('很抱歉，没有查询到对应文章！').fail(res)
   } else {
     // 获取文章id
-    const id = req.body.id
+    const id = req.query.id
     let oldArticle = null
     // 查询文章
     oldArticle = await articleService.findArticleById(id)
@@ -150,7 +150,6 @@ router.put('/article', async (req, res, next) => {
     }).catch(err => {
       next(boom.badImplementation(err))
     })
-
   }
 })
 

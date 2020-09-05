@@ -20,7 +20,7 @@ class Article {
         // 文章内的插图的id以,分隔
         this.illustrationsid = data.illustrationsid || ''
         // 文章的类别id
-        this.articleTypeid = data.articleType || ''
+        this.articleTypeid = data.articleTypeid || ''
         // 是否发布, 默认发布
         this.isPublish = data.isPublish
         // 文章作者
@@ -41,7 +41,7 @@ class Article {
         oldObj.title = newObj.title
         oldObj.introduction = newObj.introduction
         oldObj.content = newObj.content
-        oldObj.articleTypeid = newObj.articleType
+        oldObj.articleTypeid = newObj.articleTypeid
         oldObj.isPublish = newObj.isPublish
         oldObj.coverImgUrl = newObj.coverImgUrl
         oldObj.coverImgid = newObj.coverImgid

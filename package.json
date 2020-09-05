@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "pm2 start ./bin/www",
+    "start": "cross-env NODE_ENV=dev nodemon ./bin/www",
     "stop": "pm2 stop ./bin/www",
     "dev": "cross-env NODE_ENV=dev nodemon ./bin/www",
     "prd": "cross-env NODE_ENV=production pm2 start ./bin/www"

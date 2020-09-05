@@ -1,5 +1,5 @@
 const express = require('express');
-var cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const boom = require('@hapi/boom')
 const cors = require('cors')
